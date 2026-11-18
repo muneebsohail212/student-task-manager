@@ -1,2 +1,1 @@
-# student-task-manager
-Project status: In Progress
+Project status: In Progress and Testing
