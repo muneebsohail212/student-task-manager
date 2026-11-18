@@ -52,7 +52,9 @@ def complete_task(tasks, task_id):
 
 def delete_task(tasks, task_id):
     """Delete the task with the given id."""
+    if not isinstance(task_id, int) or isinstance(task_id, bool) or task_id < 1:
+        raise ValueError("Task id must be a positive whole number.")
     for index, task in enumerate(tasks):
         if task["id"] == task_id:
             return tasks.pop(index)
-    return None
+    raise ValueError(f"Task {task_id} not found.")
