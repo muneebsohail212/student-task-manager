@@ -21,7 +21,11 @@ def show_menu():
 
 def handle_add(tasks):
     title = input("Task title: ")
-    task = add_task(tasks, title)
+    try:
+        task = add_task(tasks, title)
+    except ValueError as error:
+        print(f"Error: {error}")
+        return
     save_tasks(tasks)
     print(f"Added task {task['id']}: {task['title']}")
 

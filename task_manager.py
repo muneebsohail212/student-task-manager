@@ -28,8 +28,16 @@ def next_id(tasks):
     return max((task["id"] for task in tasks), default=0) + 1
 
 
+def validate_title(title):
+    """Return the cleaned title or raise ValueError if it is empty."""
+    if title is None or not title.strip():
+        raise ValueError("Task title cannot be empty.")
+    return title.strip()
+
+
 def add_task(tasks, title):
     """Add a new task to the list and return it."""
+    title = validate_title(title)
     task = {"id": next_id(tasks), "title": title, "done": False}
     tasks.append(task)
     return task
