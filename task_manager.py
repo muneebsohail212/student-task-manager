@@ -45,9 +45,11 @@ def complete_task(tasks, task_id):
     """Mark the task with the given id as completed."""
     for task in tasks:
         if task["id"] == task_id:
+            if task["done"]:
+                raise ValueError(f"Task {task_id} is already completed.")
             task["done"] = True
             return task
-    return None
+    raise ValueError(f"Task {task_id} not found.")
 
 
 def delete_task(tasks, task_id):
