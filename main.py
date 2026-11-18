@@ -35,13 +35,17 @@ def handle_show(tasks):
 
 
 def handle_complete(tasks):
-    task_id = int(input("Task id to complete: "))
-    task = complete_task(tasks, task_id)
-    if task is None:
-        print("Task not found.")
-    else:
-        save_tasks(tasks)
-        print(f"Completed: {task['title']}")
+    raw_id = input("Task id to complete: ").strip()
+    if not raw_id.isdigit():
+        print("Error: please enter a valid numeric task id.")
+        return
+    try:
+        task = complete_task(tasks, int(raw_id))
+    except ValueError as error:
+        print(f"Error: {error}")
+        return
+    save_tasks(tasks)
+    print(f"Completed: {task['title']}")
 
 
 def handle_delete(tasks):
