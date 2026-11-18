@@ -39,3 +39,20 @@ def format_task(task):
     """Return a one-line text version of a task for display."""
     mark = "x" if task["done"] else " "
     return f"[{mark}] {task['id']}. {task['title']}"
+
+
+def complete_task(tasks, task_id):
+    """Mark the task with the given id as completed."""
+    for task in tasks:
+        if task["id"] == task_id:
+            task["done"] = True
+            return task
+    return None
+
+
+def delete_task(tasks, task_id):
+    """Delete the task with the given id."""
+    for index, task in enumerate(tasks):
+        if task["id"] == task_id:
+            return tasks.pop(index)
+    return None
